@@ -1,0 +1,42 @@
+syntax = "v1"
+
+info (
+    title: "Go-Zero Backend Starter"
+    desc: "REST API shared with a Telegram bot transport"
+    author: "D1ssolve"
+    version: "1.0"
+)
+
+type (
+    CreateNoteRequest {
+        Text string `json:"text"`
+    }
+
+    Note {
+        Id        int64  `json:"id"`
+        Text      string `json:"text"`
+        CreatedAt string `json:"createdAt"`
+    }
+
+    ListNotesResponse {
+        Items []Note `json:"items"`
+    }
+
+    HealthResponse {
+        Status string `json:"status"`
+    }
+)
+
+service starter-api {
+    @handler Health
+    get /healthz returns (HealthResponse)
+
+    @handler Ready
+    get /readyz returns (HealthResponse)
+
+    @handler CreateNote
+    post /api/v1/notes (CreateNoteRequest) returns (Note)
+
+    @handler ListNotes
+    get /api/v1/notes returns (ListNotesResponse)
+}

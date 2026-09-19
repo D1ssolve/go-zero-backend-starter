@@ -1,0 +1,15 @@
+Name: starter-api
+Host: 0.0.0.0
+Port: 8080
+Timeout: 30000
+MaxConns: 10000
+MaxBytes: 1048576
+Log:
+  ServiceName: starter-api
+  Mode: console
+  Encoding: json
+  Level: info
+Postgres:
+  DSN: ${DATABASE_URL}
+Telegram:
+  Token: ${TELEGRAM_BOT_TOKEN}
